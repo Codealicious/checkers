@@ -70,7 +70,7 @@ function game_driver() {
   }
 
   function renderBoard() {
-    for (const key in board_state) {
+    for (let key in board_state) {
       let n = parseInt(key);
       switch (board_state[key]) {
         case "b":
