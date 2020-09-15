@@ -164,6 +164,7 @@ function game_driver() {
   }
 
   function isKing(row, move, player) {
+    console.log(`checking king for ${player}- row: ${row} move: ${move}`);
     if (KINGS[row][move]) {
       board_state[move] = player + "k";
     } else {
@@ -172,6 +173,9 @@ function game_driver() {
   }
 
   function setState(piece, step, row, move, player) {
+    console.log(
+      `setting state for ${player}- piece: ${piece} step:${step} move: ${move}`
+    );
     if (step % 2 === 0) {
       board_state[piece + step / 2] = "e";
     }
