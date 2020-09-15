@@ -1,0 +1,58 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: rgb(33, 34, 42);
+}
+
+.board {
+  margin: 0 auto;
+  margin-top: 5em;
+  margin-bottom: 2em;
+  padding: 1em;
+  width: 50%;
+  border-radius: 5px;
+  background-image: url("./images/board.jpg");
+  background-size: cover;
+}
+
+.outline {
+  overflow: auto;
+  border: 0.3em solid rgba(0, 0, 0, 0.6);
+}
+
+[data-id] {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cell {
+  width: 12.5%;
+  height: 5.5em;
+  float: left;
+}
+
+.highlight {
+  box-shadow: inset 0 0 10px 5px rgba(255, 235, 59, 0.8);
+}
+
+.red {
+  background-image: url(./images/red_t.png);
+}
+
+.black {
+  background-image: url(./images/black_t.png);
+}
+
+.red-king {
+  background-image: url(./images/red_king_t.png);
+}
+
+.black-king {
+  background-image: url(./images/black_king_t.png);
+}
