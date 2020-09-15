@@ -25,7 +25,7 @@ function setState(board, piece, step, row, move, player) {
     board[piece + step / 2] = "e";
   }
   if (!(board[piece] === player + "k")) {
-    isKing(row, move, player);
+    isKing(board, row, move, player);
   } else {
     board[move] = board[piece];
   }
