@@ -25,6 +25,7 @@ html {
 
 .banner {
   color: white;
+  font-family: "Righteous", cursive;
   font-size: 5em;
   padding: 0.5em;
   flex-grow: 1;

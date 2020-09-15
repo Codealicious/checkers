@@ -40,19 +40,31 @@ function PlayerModule(shared_state) {
     switch (board[move]) {
       case player1 + "k":
         if (step === 14 || step === 18 || step === -14 || step === -18) {
-          if (board[move + 14] === "e" && board[move + 7] === cpu) {
+          if (
+            board[move + 14] === "e" &&
+            (board[move + 7] === cpu || board[move + 7] === cpu + "k")
+          ) {
             n++;
             spaces.index(move + 14).classList.add("highlight");
           }
-          if (board[move + 18] === "e" && board[move + 9] === cpu) {
+          if (
+            board[move + 18] === "e" &&
+            (board[move + 9] === cpu || board[move + 9] === cpu + "k")
+          ) {
             n++;
             spaces.index(move + 18).classList.add("highlight");
           }
-          if (board[move - 14] === "e" && board[move - 7] === cpu) {
+          if (
+            board[move - 14] === "e" &&
+            (board[move - 7] === cpu || board[move - 7] === cpu + "k")
+          ) {
             n++;
             spaces.index(move - 14).classList.add("highlight");
           }
-          if (board[move - 18] === "e" && board[move - 9] === cpu) {
+          if (
+            board[move - 18] === "e" &&
+            (board[move - 9] === cpu || board[move - 9] === cpu + "k")
+          ) {
             n++;
             spaces.index(move - 18).classList.add("highlight");
           }
@@ -60,11 +72,17 @@ function PlayerModule(shared_state) {
         }
       case player1:
         if (step === -14 || step === -18) {
-          if (board[move - 14] === "e" && board[move - 7] === cpu) {
+          if (
+            board[move - 14] === "e" &&
+            (board[move - 7] === cpu || board[move - 7] === cpu + "k")
+          ) {
             n++;
             spaces.index(move - 14).classList.add("highlight");
           }
-          if (board[move - 18] === "e" && board[move - 9] === cpu) {
+          if (
+            board[move - 18] === "e" &&
+            (board[move - 9] === cpu || board[move - 9] === cpu + "k")
+          ) {
             n++;
             spaces.index(move - 18).classList.add("highlight");
           }
