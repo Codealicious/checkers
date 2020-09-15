@@ -203,7 +203,7 @@ function game_driver() {
   };
 }
 
-let game;
+var game;
 game = game_driver();
 game.initialize();
 document
