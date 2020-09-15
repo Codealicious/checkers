@@ -1,5 +1,5 @@
-import PlayerModule from "./modules/player_module.js";
-import CpuModule from "./modules/cpu_module.js";
+import { PlayerModule } from "./modules/player_module.js";
+import { CpuModule } from "./modules/cpu_module.js";
 
 NodeList.prototype.index = function (n) {
   return this[Math.floor(n / 2)];
