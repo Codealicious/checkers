@@ -1,59 +1,29 @@
+import setState from "./utils.js";
+
 function CpuModule(shared_state) {
-  let board_state = shared_state.board_state;
+  let board = shared_state.board_state;
   let player1 = shared_state.player1;
   let cpu = shared_state.cpu;
 
   function processTurn(piece) {
     console.log(
-      "processing turn for: " + (board_state[piece] === cpu ? "CPU" : "Player1")
+      "processing turn for: " + (board[piece] === cpu ? "CPU" : "Player1")
     );
-    switch (board_state[piece]) {
+    switch (board[piece]) {
       case cpu + "k":
         console.log(`looking for King move -7 || -9...`);
-        if (board_state[piece - 7] === "e") {
-          return [
-            {
-              step: -7,
-              row: "bottom",
-              player: cpu,
-              move: piece - 7,
-              piece,
-            },
-          ];
+        if (board[piece - 7] === "e") {
+          return setState(board, piece, -7, "bottom", piece - 7, cpu);
         }
-        if (board_state[piece - 9] === "e") {
-          return [
-            {
-              step: -9,
-              row: "bottom",
-              player: cpu,
-              move: piece - 9,
-              piece,
-            },
-          ];
+        if (board[piece - 9] === "e") {
+          return setState(board, piece, -9, "bottom", piece - 9, cpu);
         }
       case cpu:
-        if (board_state[piece + 7] === "e") {
-          return [
-            {
-              step: 7,
-              row: "bottom",
-              player: cpu,
-              move: piece + 7,
-              piece,
-            },
-          ];
+        if (board[piece + 7] === "e") {
+          return setState(board, piece, 7, "bottom", piece + 7, cpu);
         }
-        if (board_state[piece + 9] === "e") {
-          return [
-            {
-              step: 9,
-              row: "bottom",
-              player: cpu,
-              move: piece + 9,
-              piece,
-            },
-          ];
+        if (board[piece + 9] === "e") {
+          return setState(board, piece, 9, "bottom", piece + 9, cpu);
         }
       default:
         return false;
@@ -73,64 +43,36 @@ function CpuModule(shared_state) {
 
   function processJump(id) {
     console.log(`processing jump for space: ${id}`);
-    switch (board_state[id]) {
+    switch (board[id]) {
       case cpu + "k":
         if (
-          board_state[id - 18] &&
-          board_state[id - 18] === "e" &&
-          (board_state[id - 9] === player1 ||
-            board_state[id - 9] === player1 + "k")
+          board[id - 18] &&
+          board[id - 18] === "e" &&
+          (board[id - 9] === player1 || board[id - 9] === player1 + "k")
         ) {
-          return {
-            step: -18,
-            row: "bottom",
-            player: cpu,
-            move: id - 18,
-            piece: id,
-          };
+          return setState(board, id, -18, "bottom", id - 18, cpu);
         }
         if (
-          board_state[id - 14] &&
-          board_state[id - 14] === "e" &&
-          (board_state[id - 7] === player1 ||
-            board_state[id - 7] === player1 + "k")
+          board[id - 14] &&
+          board[id - 14] === "e" &&
+          (board[id - 7] === player1 || board[id - 7] === player1 + "k")
         ) {
-          return {
-            step: -14,
-            row: "bottom",
-            player: cpu,
-            move: id - 14,
-            piece: id,
-          };
+          return setState(board, id, -14, "bottom", id - 14, cpu);
         }
       case cpu:
         if (
-          board_state[id + 18] &&
-          board_state[id + 18] === "e" &&
-          (board_state[id + 9] === player1 ||
-            board_state[id + 9] === player1 + "k")
+          board[id + 18] &&
+          board[id + 18] === "e" &&
+          (board[id + 9] === player1 || board[id + 9] === player1 + "k")
         ) {
-          return {
-            step: 18,
-            row: "bottom",
-            player: cpu,
-            move: id + 18,
-            piece: id,
-          };
+          return setState(board, id, 18, "bottom", id + 18, cpu);
         }
         if (
-          board_state[id + 14] &&
-          board_state[id + 14] === "e" &&
-          (board_state[id + 7] === player1 ||
-            board_state[id + 7] === player1 + "k")
+          board[id + 14] &&
+          board[id + 14] === "e" &&
+          (board[id + 7] === player1 || board[id + 7] === player1 + "k")
         ) {
-          return {
-            step: 14,
-            row: "bottom",
-            player: cpu,
-            move: id + 14,
-            piece: id,
-          };
+          return setState(board, id, 14, "bottom", id + 14, cpu);
         }
       default:
         return null;
@@ -141,20 +83,16 @@ function CpuModule(shared_state) {
     let id;
     let result = null;
     let jumps = 0;
-    let results = [];
-    for (let i = 0, j; i < pieces.length; i++) {
+    for (let i = 0; i < pieces.length; i++) {
       id = parseInt(pieces[i].getAttribute("data-id"));
-      console.log(`["${board_state[id]}"]: checking jumps...`);
-      j = 0;
+      console.log(`[${id}]["${board[id]}"]: checking jumps...`);
       while ((result = processJump(id))) {
-        id = result.move;
+        id += result;
         jumps++;
-        results[j++] = result;
-        console.log(`step: ${result.step} jumps: ${jumps} id: ${id}`);
+        console.log(`step: ${result} jumps: ${jumps} id: ${id}`);
       }
-      console.log(`jumps: ${jumps}`, "results", results);
-      if (results.length) {
-        return results;
+      if (jumps) {
+        return true;
       }
     }
     return false;

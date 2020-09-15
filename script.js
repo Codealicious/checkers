@@ -114,10 +114,10 @@ function game_driver() {
   function selectPiece(e) {
     if (activePlayer && e.target.hasAttribute("data-id")) {
       activePlayer = 0;
-      let spaceID = parseInt(e.target.getAttribute("data-id"));
+      let move = parseInt(e.target.getAttribute("data-id"));
       if (
-        board_state[spaceID] === player1 ||
-        board_state[spaceID] === player1 + "k"
+        board_state[move] === player1 ||
+        board_state[move] === player1 + "k"
       ) {
         if (currentSelection) {
           currentSelection.classList.remove("highlight");
@@ -127,34 +127,16 @@ function game_driver() {
           currentSelection = e.target;
           currentSelection.classList.add("highlight");
         }
-      } else if (currentSelection && board_state[spaceID] === "e") {
+      } else if (currentSelection && board_state[move] === "e") {
         let result = player_mod.processTurn(
           parseInt(currentSelection.getAttribute("data-id")),
-          spaceID
+          move
         );
         console.log("result: ", result);
         if (result) {
-          setState(
-            result.piece,
-            result.step,
-            result.row,
-            result.move,
-            result.player
-          );
           renderBoard();
-          if (!player_mod.multiJump(result.move, result.step)) {
-            result = cpu_mod.cpuTurn();
-            console.log("cpu result: ", result);
-            if (result.length) {
-              for (let i = 0; i < result.length; i++) {
-                setState(
-                  result[i].piece,
-                  result[i].step,
-                  result[i].row,
-                  result[i].move,
-                  result[i].player
-                );
-              }
+          if (!player_mod.multiJump(move, result)) {
+            if (cpu_mod.cpuTurn()) {
               renderBoard();
             } else {
               console.log("game over!");
@@ -167,43 +149,13 @@ function game_driver() {
     }
   }
 
-  function isKing(row, move, player) {
-    console.log(`checking king for ${player}- row: ${row} move: ${move}`);
-    if (KINGS[row][move]) {
-      board_state[move] = player + "k";
-    } else {
-      board_state[move] = player;
-    }
-  }
-
-  function setState(piece, step, row, move, player) {
-    console.log(
-      `setting state for ${player}- piece: ${piece} step:${step} move: ${move}`
-    );
-    if (step % 2 === 0) {
-      board_state[piece + step / 2] = "e";
-    }
-    if (!(board_state[piece] === player + "k")) {
-      isKing(row, move, player);
-    } else {
-      board_state[move] = board_state[piece];
-    }
-    board_state[piece] = "e";
-    return step;
-  }
-
-  function checkBoard() {
-    console.log(board_state);
-  }
-
   return {
     initialize,
     selectPiece,
-    checkBoard,
   };
 }
 
-var game;
+let game;
 game = game_driver();
 game.initialize();
 document
