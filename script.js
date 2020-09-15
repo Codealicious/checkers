@@ -133,27 +133,30 @@ function game_driver() {
           spaceID
         );
         console.log("result: " + result);
-        if (typeof result === "array" && result.length) {
-          for (let i = 0; i < result.length; i++) {
-            setState(
-              result[i].piece,
-              result[i].step,
-              result[i].row,
-              result[i].move,
-              result[i].player
-            );
-          }
+        if (result) {
+          setState(
+            result.piece,
+            result.step,
+            result.row,
+            result.move,
+            result.player
+          );
           renderBoard();
           if (!player_mod.multiJump(result.move, result.step)) {
-            if ((result = cpu_mod.cpuTurn())) {
+            if (
+              typeof (result = cpu_mod.cpuTurn()) === "array" &&
+              result.length
+            ) {
               console.log("cpu result: ", result);
-              setState(
-                result.piece,
-                result.step,
-                result.row,
-                result.move,
-                result.player
-              );
+              for (let i = 0; i < result.length; i++) {
+                setState(
+                  result[i].piece,
+                  result[i].step,
+                  result[i].row,
+                  result[i].move,
+                  result[i].player
+                );
+              }
               renderBoard();
             } else {
               console.log("game over!");
