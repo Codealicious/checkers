@@ -165,4 +165,4 @@ function CpuModule(shared_state) {
   };
 }
 
-export default CpuModule;
+export { CpuModule };

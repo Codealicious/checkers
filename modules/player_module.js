@@ -115,4 +115,4 @@ function PlayerModule(shared_state) {
   };
 }
 
-export default PlayerModule;
+export { PlayerModule };
