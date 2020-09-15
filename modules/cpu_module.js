@@ -143,7 +143,7 @@ function CpuModule(shared_state) {
         results[j++] = result;
         console.log(`step: ${result.step} jumps: ${jumps}`);
       }
-      console.log(`jumps: ${jumps}`);
+      console.log(`jumps: ${jumps}`, "results", results);
       if (results.length) {
         return results;
       }
