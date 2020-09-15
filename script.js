@@ -144,8 +144,8 @@ function game_driver() {
           renderBoard();
           if (!player_mod.multiJump(result.move, result.step)) {
             result = cpu_mod.cpuTurn();
+            console.log("cpu result: ", result);
             if (result.length) {
-              console.log("cpu result: ", result);
               for (let i = 0; i < result.length; i++) {
                 setState(
                   result[i].piece,
