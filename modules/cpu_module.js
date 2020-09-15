@@ -6,12 +6,8 @@ function CpuModule(shared_state) {
   let cpu = shared_state.cpu;
 
   function processTurn(piece) {
-    console.log(
-      "processing turn for: " + (board[piece] === cpu ? "CPU" : "Player1")
-    );
     switch (board[piece]) {
       case cpu + "k":
-        console.log(`looking for King move -7 || -9...`);
         if (board[piece - 7] === "e") {
           return setState(board, piece, -7, "bottom", piece - 7, cpu);
         }
@@ -42,7 +38,6 @@ function CpuModule(shared_state) {
   }
 
   function processJump(id) {
-    console.log(`processing jump for space: ${id}`);
     switch (board[id]) {
       case cpu + "k":
         if (
@@ -85,11 +80,9 @@ function CpuModule(shared_state) {
     let jumps = 0;
     for (let i = 0; i < pieces.length; i++) {
       id = parseInt(pieces[i].getAttribute("data-id"));
-      console.log(`[${id}]["${board[id]}"]: checking jumps...`);
       while ((result = processJump(id))) {
         id += result;
         jumps++;
-        console.log(`step: ${result} jumps: ${jumps} id: ${id}`);
       }
       if (jumps) {
         return true;
@@ -101,7 +94,6 @@ function CpuModule(shared_state) {
   function cpuTurn() {
     let pieces = document.querySelectorAll(".black");
     let kings = document.querySelectorAll(".black-king");
-    console.log(pieces);
     return (
       cpuJump(kings) || cpuJump(pieces) || cpuMove(kings) || cpuMove(pieces)
     );

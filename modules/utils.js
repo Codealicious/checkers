@@ -9,7 +9,6 @@ const KINGS = {
 };
 
 function isKing(board, row, move, player) {
-  console.log(`checking king for ${player}- row: ${row} move: ${move}`);
   if (KINGS[row][move]) {
     board[move] = player + "k";
   } else {
@@ -18,21 +17,10 @@ function isKing(board, row, move, player) {
 }
 
 function setState(board, piece, step, row, move, player) {
-  console.log(
-    `setting state for ${player}- piece: ${piece} step:${step} move: ${move}`,
-    "\nboard state:\n",
-    board
-  );
-
   if (step % 2 === 0) {
     board[piece + step / 2] = "e";
   }
   if (!(board[piece] === player + "k")) {
-    console.log(
-      `checking king for ${player}- row: ${row} move: ${move}`,
-      "board state:\n",
-      board
-    );
     isKing(board, row, move, player);
   } else {
     board[move] = board[piece];

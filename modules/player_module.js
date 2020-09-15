@@ -7,9 +7,6 @@ function PlayerModule(shared_state) {
   let cpu = shared_state.cpu;
 
   function processTurn(piece, move) {
-    console.log(
-      "processing turn for: " + (board[piece] === cpu ? "CPU" : "Player1")
-    );
     switch (board[piece]) {
       case player1 + "k":
         if (

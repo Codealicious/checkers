@@ -123,14 +123,12 @@ function game_driver() {
           parseInt(currentSelection.getAttribute("data-id")),
           move
         );
-        console.log("result: ", result);
         if (result) {
           renderBoard();
           if (!player_mod.multiJump(move, result)) {
             if (cpu_mod.cpuTurn()) {
               renderBoard();
             } else {
-              console.log("game over!");
               initialize();
             }
           }
