@@ -143,10 +143,8 @@ function game_driver() {
           );
           renderBoard();
           if (!player_mod.multiJump(result.move, result.step)) {
-            if (
-              typeof (result = cpu_mod.cpuTurn()) === "array" &&
-              result.length
-            ) {
+            result = cpu_mod.cpuTurn();
+            if (result.length) {
               console.log("cpu result: ", result);
               for (let i = 0; i < result.length; i++) {
                 setState(
