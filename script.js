@@ -14,15 +14,6 @@ function game_driver() {
   let board_state;
   let player_mod;
   let cpu_mod;
-  const KINGS = {
-    top: { 1: 1, 3: 1, 5: 1, 7: 1 },
-    bottom: {
-      56: 1,
-      58: 1,
-      60: 1,
-      62: 1,
-    },
-  };
 
   function initialize() {
     spaces = document.querySelectorAll("[data-id]");

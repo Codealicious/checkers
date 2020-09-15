@@ -1,3 +1,13 @@
+const KINGS = {
+  top: { 1: 1, 3: 1, 5: 1, 7: 1 },
+  bottom: {
+    56: 1,
+    58: 1,
+    60: 1,
+    62: 1,
+  },
+};
+
 function isKing(board, row, move, player) {
   console.log(`checking king for ${player}- row: ${row} move: ${move}`);
   if (KINGS[row][move]) {
