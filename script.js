@@ -184,14 +184,14 @@ function game_driver() {
     return step;
   }
 
-  initialize();
-
   return {
-    selectPiece: selectPiece,
+    initialize,
+    selectPiece,
   };
 }
 
 game = game_driver();
+game.initialize();
 document
   .querySelector(".board")
   .addEventListener("click", game.selectPiece, false);
