@@ -11,41 +11,49 @@ function CpuModule(shared_state) {
       case cpu + "k":
         console.log(`looking for King move -7 || -9...`);
         if (board_state[piece - 7] === "e") {
-          return {
-            step: -7,
-            row: "bottom",
-            player: cpu,
-            move: piece - 7,
-            piece,
-          };
+          return [
+            {
+              step: -7,
+              row: "bottom",
+              player: cpu,
+              move: piece - 7,
+              piece,
+            },
+          ];
         }
         if (board_state[piece - 9] === "e") {
-          return {
-            step: -9,
-            row: "bottom",
-            player: cpu,
-            move: piece - 9,
-            piece,
-          };
+          return [
+            {
+              step: -9,
+              row: "bottom",
+              player: cpu,
+              move: piece - 9,
+              piece,
+            },
+          ];
         }
       case cpu:
         if (board_state[piece + 7] === "e") {
-          return {
-            step: 7,
-            row: "bottom",
-            player: cpu,
-            move: piece + 7,
-            piece,
-          };
+          return [
+            {
+              step: 7,
+              row: "bottom",
+              player: cpu,
+              move: piece + 7,
+              piece,
+            },
+          ];
         }
         if (board_state[piece + 9] === "e") {
-          return {
-            step: 9,
-            row: "bottom",
-            player: cpu,
-            move: piece + 9,
-            piece,
-          };
+          return [
+            {
+              step: 9,
+              row: "bottom",
+              player: cpu,
+              move: piece + 9,
+              piece,
+            },
+          ];
         }
       default:
         return false;

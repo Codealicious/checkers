@@ -133,14 +133,16 @@ function game_driver() {
           spaceID
         );
         console.log("result: " + result);
-        if (result) {
-          setState(
-            result.piece,
-            result.step,
-            result.row,
-            result.move,
-            result.player
-          );
+        if (typeof result === "array" && result.length) {
+          for (let i = 0; i < result.length; i++) {
+            setState(
+              result[i].piece,
+              result[i].step,
+              result[i].row,
+              result[i].move,
+              result[i].player
+            );
+          }
           renderBoard();
           if (!player_mod.multiJump(result.move, result.step)) {
             if ((result = cpu_mod.cpuTurn())) {
