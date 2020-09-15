@@ -1,4 +1,4 @@
-export default function CpuModule(shared_state) {
+function CpuModule(shared_state) {
   let board_state = shared_state.board_state;
   let player1 = shared_state.player1;
   let cpu = shared_state.cpu;
@@ -164,3 +164,5 @@ export default function CpuModule(shared_state) {
     cpuTurn,
   };
 }
+
+export default CpuModule;

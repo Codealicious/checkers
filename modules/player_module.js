@@ -1,4 +1,4 @@
-export default function PlayerModule(shared_state) {
+function PlayerModule(shared_state) {
   let board_state = shared_state.board_state;
   let spaces = shared_state.spaces;
   let player1 = shared_state.player1;
@@ -114,3 +114,5 @@ export default function PlayerModule(shared_state) {
     multiJump,
   };
 }
+
+export default PlayerModule;
