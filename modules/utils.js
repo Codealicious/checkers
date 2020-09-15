@@ -28,6 +28,11 @@ function setState(board, piece, step, row, move, player) {
     board[piece + step / 2] = "e";
   }
   if (!(board[piece] === player + "k")) {
+    console.log(
+      `checking king for ${player}- row: ${row} move: ${move}`,
+      "board state:\n",
+      board
+    );
     isKing(board, row, move, player);
   } else {
     board[move] = board[piece];
