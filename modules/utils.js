@@ -19,8 +19,11 @@ function isKing(board, row, move, player) {
 
 function setState(board, piece, step, row, move, player) {
   console.log(
-    `setting state for ${player}- piece: ${piece} step:${step} move: ${move}`
+    `setting state for ${player}- piece: ${piece} step:${step} move: ${move}`,
+    "\nboard state:\n",
+    board
   );
+
   if (step % 2 === 0) {
     board[piece + step / 2] = "e";
   }
