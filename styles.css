@@ -8,15 +8,30 @@ html {
   background-color: rgb(33, 34, 42);
 }
 
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .board {
-  margin: 0 auto;
-  margin-top: 5em;
-  margin-bottom: 2em;
+  flex-grow: 2;
+  margin-top: 2rem;
   padding: 1em;
   width: 50%;
   border-radius: 5px;
   background-image: url("./images/board.jpg");
   background-size: cover;
+}
+
+.banner {
+  color: white;
+  font-size: 5em;
+  padding: 0.5em;
+  flex-grow: 1;
+}
+
+.player1 {
+  align-self: flex-end;
 }
 
 .outline {
