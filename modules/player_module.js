@@ -1,4 +1,4 @@
-import setState from "./utils.js";
+import { setState } from "./utils.js";
 
 function PlayerModule(shared_state) {
   let board = shared_state.board_state;
