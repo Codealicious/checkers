@@ -192,9 +192,14 @@ function game_driver() {
     return step;
   }
 
+  function checkBoard() {
+    console.log(board_state);
+  }
+
   return {
     initialize,
     selectPiece,
+    checkBoard,
   };
 }
 
