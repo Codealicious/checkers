@@ -132,7 +132,7 @@ function game_driver() {
           parseInt(currentSelection.getAttribute("data-id")),
           spaceID
         );
-        console.log("result: " + result);
+        console.log("result: ", result);
         if (result) {
           setState(
             result.piece,
