@@ -72,6 +72,7 @@ function CpuModule(shared_state) {
   }
 
   function processJump(id) {
+    console.log("processing jump for space: ", id);
     switch (board_state[id]) {
       case cpu + "k":
         if (
