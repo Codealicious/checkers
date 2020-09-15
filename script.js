@@ -190,7 +190,7 @@ function game_driver() {
   };
 }
 
-game = game_driver();
+let game = game_driver();
 game.initialize();
 document
   .querySelector(".board")
